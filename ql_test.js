@@ -4,6 +4,7 @@
  * 
  * TEST 
  */
+const Env = require('./env');
 
 const $ = new Env('测试');
 
