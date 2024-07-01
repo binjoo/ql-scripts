@@ -1,8 +1,5 @@
 /*
- * cron: 15 7 * * *
- * 巴拉巴拉
- * 
- * TEST 
+ * cron: 15 14 * * *
  */
 const Env = require('./env');
 const axios = require('axios');
@@ -23,10 +20,10 @@ async function getSignToken () {
     const root = cheerio.load(response.data);
     const cookie = true;
     if (root('header.navbar ul.navbar-nav li').last('a').text().trim() === '登录') {
-      $.log('✔当前已登录...');
+      $.log('❌当前未登录...');
       cookie = false;
     } else {
-      $.logErr('❌当前未登录...');
+      $.log('✔当前已登录...');
     }
     const regex = /var\s+sign\s*=\s*"([^"]+)";/;
     const match = response.data.match(regex);
@@ -50,7 +47,7 @@ async function postSgSign (sign) {
   formData.append('sign', sign);
   return await axios.post('https://www.hifini.com/sg_sign.htm', formData, config).then((response) => {
     const root = cheerio.load(response.data);
-    $.log(root('div.container h4.card-title.text-center').text().trim());
+    $.log('📢' + root('div.container h4.card-title.text-center').text().trim());
   })
 }
 
