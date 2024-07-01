@@ -79,7 +79,7 @@ async function getSignDetail () {
 
 !(async () => {
   if (!process.env[COOKIE_NAME]) {
-    $.log('未设置 ');
+    $.log(`未设置环境变量 [${COOKIE_NAME}]`);
     return;
   }
 
