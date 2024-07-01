@@ -78,7 +78,6 @@ async function getSignDetail () {
 }
 
 !(async () => {
-  console.log(process.env)
   if (!process.env[COOKIE_NAME]) {
     $.log(`未设置环境变量 [${COOKIE_NAME}]`);
     return;
