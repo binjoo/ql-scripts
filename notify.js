@@ -1,5 +1,6 @@
 async function telegram (title, content) {
   return new Promise((resolve, reject) => {
+    console.log(process.env)
     const TG_BOT_TOKEN = process.env.TG_BOT_TOKEN;
     console.log('TG_BOT_TOKEN', TG_BOT_TOKEN)
     const TG_USER_ID = process.env.TG_USER_ID;
