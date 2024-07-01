@@ -2,7 +2,7 @@ async function telegram (title, content) {
   return new Promise((resolve, reject) => {
     const TG_BOT_TOKEN = process.env.TG_BOT_TOKEN;
     const TG_USER_ID = process.env.TG_USER_ID;
-    const TG_PROXY_URL = process.env.TG_PROXY_URL || 'https://api.telegram.org';
+    const TG_API_HOST = process.env.TG_API_HOST || 'https://api.telegram.org';
     if (!TG_BOT_TOKEN || !TG_USER_ID) {
       resolve();
       return;
@@ -17,7 +17,7 @@ async function telegram (title, content) {
     }
 
     const axios = require('axios');
-    axios.post(`${TG_PROXY_URL}/bot${TG_BOT_TOKEN}/sendMessage`, data).then((response) => {
+    axios.post(`${TG_API_HOST}/bot${TG_BOT_TOKEN}/sendMessage`, data).then((response) => {
       if (response.data.ok) {
         console.log('[Telegram] 🎉 发送通知消息成功🎉。');
       }
