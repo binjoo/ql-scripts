@@ -23,7 +23,7 @@ async function getSignToken () {
       $.log('❌当前未登录...');
       cookie = false;
     } else {
-      $.log('✔当前已登录...');
+      $.log('✔️当前已登录...');
     }
     const regex = /var\s+sign\s*=\s*"([^"]+)";/;
     const match = response.data.match(regex);
