@@ -6,9 +6,10 @@ qinglong scripts
 ql repo https://github.com/binjoo/ql-scripts.git "nm_|nm-" "" "env.js|notify.js" "" "js ts"
 ```
 
-| 名称        | 环境变量             | 备注                                |
-| ----------- | -------------------- | ----------------------------------- |
-| HiFiNi签到  | `NM_HIFINI_COOKIE`    |                                     |
-| MIUIVer签到 | `NM_MIUIVER_COOKIE`  |                                     |
-| AcFun签到   | `NM_ACFUN_COOKIE`    | 仅保留`acPasstoken`、`auth_key`即可 |
-| 马蜂窝签到  | `NM_MAFENGWO_COOKIE` | 仅保留`mafengwo`即可                |
+| 名称        | 环境变量             | 备注                                            |
+| ----------- | -------------------- | ----------------------------------------------- |
+| HiFiNi签到  | `NM_HIFINI_COOKIE`   |                                                 |
+| MIUIVer签到 | `NM_MIUIVER_COOKIE`  |                                                 |
+| AcFun签到   | `NM_ACFUN_COOKIE`    | 仅保留`acPasstoken`、`auth_key`即可             |
+| 马蜂窝签到  | `NM_MAFENGWO_COOKIE` | 仅保留`mafengwo`即可                            |
+| 飞牛NAS签到 | `NM_FNNAS_COOKIE`    | 仅保留`pvRK_2132_saltkey`、`pvRK_2132_auth`即可 |
