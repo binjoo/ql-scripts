@@ -5,7 +5,7 @@ const Env = require('./env');
 const axios = require('axios');
 const notify = require('./notify');
 
-const $ = new Env('墨天轮每日签到');
+const $ = new Env('墨天轮签到');
 const COOKIE_NAME = 'NM_MODB_COOKIE';
 
 const config = {
