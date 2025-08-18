@@ -54,9 +54,9 @@ async function postSgSign (sign) {
 async function getMyCredits () {
   return await axios.get('https://hifiti.com/my-credits.htm', config).then(async (response) => {
     const root = cheerio.load(response.data);
-    const val = root('div.card div.card-body input[type=text]:eq(1)').val();
+    const val = root('div.card div.card-body input[type=text]:eq(1)').attr('value');
     return {
-      rank: val
+      total: val
     }
   })
 }
@@ -74,7 +74,7 @@ async function getSignDetail () {
      */
     const td = root('div.card table.table tr:last-child td');
     return {
-      total: td.eq(0).text(),
+      rank: td.eq(0).text(),
       username: td.eq(1).text(),
       totalGold: td.eq(2).text(),
       dailyGold: td.eq(3).text(),
@@ -103,14 +103,14 @@ async function getSignDetail () {
 
   const text = `👛总金币：${detail.total}`;
 
-//   const detail = await getSignDetail();
+  //   const detail = await getSignDetail();
 
-//   const text = `👨‍💻${detail.username} 签到明细
-// 🥇今日签到排名：${detail.rank}
-// 🏆今日签到金币：${detail.dailyGold}
-// 👛总金币：${detail.totalGold}
-// 📆连续签到天数：${detail.consecutiveDays}
-// 📅签到总天数：${detail.checkInDays}`;
+  //   const text = `👨‍💻${detail.username} 签到明细
+  // 🥇今日签到排名：${detail.rank}
+  // 🏆今日签到金币：${detail.dailyGold}
+  // 👛总金币：${detail.totalGold}
+  // 📆连续签到天数：${detail.consecutiveDays}
+  // 📅签到总天数：${detail.checkInDays}`;
   $.log(text);
   await notify.telegram($.name, text);
 })().catch((e) => {
