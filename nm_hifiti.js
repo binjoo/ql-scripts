@@ -54,7 +54,7 @@ async function postSgSign (sign) {
 async function getMyCredits () {
   return await axios.get('https://hifiti.com/my-credits.htm', config).then(async (response) => {
     const root = cheerio.load(response.data);
-    const val = root('div.card table.table tr:last-child td').val();
+    const val = root('div.card div.card-body input[type=text]:eq(1)').val();
     return {
       rank: val
     }
@@ -72,7 +72,7 @@ async function getSignDetail () {
      * 5 签到天数
      * 6 连续签到天数
      */
-    const td = root('div.card div.card-body input[type=text]:eq(1)');
+    const td = root('div.card table.table tr:last-child td');
     return {
       total: td.eq(0).text(),
       username: td.eq(1).text(),
