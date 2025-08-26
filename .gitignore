@@ -72,3 +72,5 @@ build/*.json
 package-lock.json
 
 .vscode/
+
+__pycache__
