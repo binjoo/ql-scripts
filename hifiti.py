@@ -1,3 +1,6 @@
+# new Env('HiFiTi 签到')
+# cron "45 10 * * *"
+
 import requests
 import json
 import os
