@@ -1,3 +1,6 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
 # new Env('HiFiTi 签到')
 # cron '45 10 * * *'
 
