@@ -8,10 +8,8 @@ from bs4 import BeautifulSoup
 import utils
 import log
 
-# USERNAME = os.getenv("HIFITI_USERNAME")
-# PASSWORD = os.getenv("HIFITI_PASSWORD")
-USERNAME = "HIFITI_USERNAME"
-PASSWORD = "HIFITI_PASSWORD"
+USERNAME = os.getenv("HIFITI_USERNAME")
+PASSWORD = os.getenv("HIFITI_PASSWORD")
 BASE_URL = "https://www.hifiti.com"
 USER_AGENT = (
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:142.0) Gecko/20100101 Firefox/142.0"
@@ -71,9 +69,9 @@ def sign(session):
     try:
         result = response.json()
         if result.get("code") == "0":
-            log.success(f"签到成功，{result.get("message")}")
+            log.success(f"签到成功，{result.get('message')}")
         else:
-            log.wran(f"签到失败，{result.get("message")}")
+            log.wran(f"签到失败，{result.get('message')}")
     except Exception as e:
         log.error(f"签到响应解析异常：,{e}")
         print(response.text)
