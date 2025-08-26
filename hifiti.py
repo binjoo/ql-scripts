@@ -71,7 +71,7 @@ def sign(session):
         if result.get("code") == "0":
             log.success(f"签到成功，{result.get('message')}")
         else:
-            log.wran(f"签到失败，{result.get('message')}")
+            log.warn(f"签到失败，{result.get('message')}")
     except Exception as e:
         log.error(f"签到响应解析异常：,{e}")
         print(response.text)
@@ -97,7 +97,7 @@ def getCredits(session):
         if em:
             return em.text.strip()
 
-    log.wran("未能找到金币数量")
+    log.warn("未能找到金币数量")
     return None
 
 
