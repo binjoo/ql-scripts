@@ -54,6 +54,7 @@ def login(username, password):
             return session
         else:
             log.error(f"登录失败：{result.get('message')}")
+            utils.push("HiFiTi 签到", f"登录失败：{result.get('message')}")
             return None
     except json.JSONDecodeError:
         log.warn("返回内容不是有效 JSON，可能登录失败或者返回了登录页面HTML")
@@ -109,7 +110,10 @@ def getCredits(session):
 
 if __name__ == "__main__":
     if not USERNAME or not PASSWORD:
-        log.error("未错误：环境变量 HIFITI_USERNAME 或 HIFITI_PASSWORD 未配置。")
+        log.error("环境变量 HIFITI_USERNAME 或 HIFITI_PASSWORD 未配置。")
+        utils.push(
+            "HiFiTi 签到", "环境变量 HIFITI_USERNAME 或 HIFITI_PASSWORD 未配置。"
+        )
         exit(1)
 
     session = login(USERNAME, PASSWORD)
