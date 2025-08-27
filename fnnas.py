@@ -32,9 +32,6 @@ def token():
 
     soup = BeautifulSoup(response.text, "html.parser")
 
-    print(response.text)
-    print(soup.find("a", class_="btna", string="点击打卡"))
-
     span = soup.find("span", string="登录")
     if span:
         log.error("当前 COOKIE 已失效，请重新设置。")
