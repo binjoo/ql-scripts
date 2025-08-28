@@ -22,7 +22,7 @@ USER_AGENT = (
 )
 
 
-def login(username, password):
+def login():
     loginUrl = f"{BASE_URL}/user-login.htm"
     session = requests.Session()
 
@@ -116,7 +116,7 @@ if __name__ == "__main__":
         )
         exit(1)
 
-    session = login(USERNAME, PASSWORD)
+    session = login()
     if session:
         sign(session)
         gold = getCredits(session)
