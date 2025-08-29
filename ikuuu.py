@@ -13,6 +13,8 @@ import log
 
 USERNAME = os.getenv("IKUUU_USERNAME")
 PASSWORD = os.getenv("IKUUU_PASSWORD")
+USERNAME = "binjoo@outlook.com"
+PASSWORD = "E#2K$^3ux!4fh5kx"
 BASE_URL = "https://ikuuu.org"
 USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0"
 
@@ -26,18 +28,8 @@ def login():
     session = requests.Session()
     session.get(loginUrl)
 
-    # 准备登录请求头
-    headers = {
-        "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
-        "Origin": BASE_URL,
-        "Referer": loginUrl,
-        "User-Agent": USER_AGENT,
-        "X-Requested-With": "XMLHttpRequest",
-        "Accept": "application/json, text/javascript, */*; q=0.01",
-    }
-
     try:
-        response = session.post(loginUrl, headers=headers, params=params)
+        response = session.post(loginUrl, headers=HEADERS, params=params)
 
         log.debug("尝试登录....")
         result = response.json()
@@ -46,7 +38,7 @@ def login():
             log.success(result.get("msg"))
             return session
         else:
-            log.error(f"登录失败：{result.get("msg")}")
+            log.error(f"登录失败：{result.get('msg')}")
             utils.push("IKUUU 签到", f"登录失败：{result.get('msg')}")
             return None
 
