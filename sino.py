@@ -95,6 +95,8 @@ def question():
                 questionType = "单选题"
             elif result.get("data").get("type") == "sn-checkbox":
                 questionType = "多选题"
+            elif result.get("data").get("type") == "sn-judge-select":
+                questionType = "多选题"
 
             questionTitle = result.get("data").get("name")
 
