@@ -88,9 +88,9 @@ def info(token):
     )
 
     log.info("======用户信息 TOP======")
-    log.info(f"ID：{plaintext.get("id")}")
-    log.info(f"经验：{plaintext.get("jy")}")
-    log.info(f"积分：{plaintext.get("jf")}")
+    log.info(f"ID：{plaintext.get('id')}")
+    log.info(f"经验：{plaintext.get('jy')}")
+    log.info(f"积分：{plaintext.get('jf')}")
     log.info("======用户信息 BOTTOM======")
 
 def decrypt_aes_cbc_base64(
