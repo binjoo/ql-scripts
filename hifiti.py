@@ -103,7 +103,7 @@ def getCredits():
     if span:
         em = span.find_next_sibling("em")
         if em:
-            return em.text.strip()
+            return em.get_text(strip=True).strip()
 
     log.warn("未能找到金币数量")
     return None
