@@ -59,10 +59,10 @@ def sign(token):
     if response.status_code == 200:
         data = response.json()
         if data.get("code") == 1:
-            log.success(f"签到成功：{data.get("msg")}")
+            log.success(f"签到成功：{data.get('msg')}")
             return True
         else:
-            log.warn(f"签到失败：{data.get("msg")}")
+            log.warn(f"签到失败：{data.get('msg')}")
             return True
     else:
         log.error("请求失败，状态码:", response.status_code)
