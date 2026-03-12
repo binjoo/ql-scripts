@@ -21,6 +21,10 @@ USER_AGENT = (
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:142.0) Gecko/20100101 Firefox/142.0"
 )
 
+PROXIES = {
+    "http": os.getenv("PROXY_HTTP"),
+    "https": os.getenv("PROXY_HTTPS"),
+}
 
 def login():
     loginUrl = f"{BASE_URL}/user-login.htm"
@@ -43,7 +47,7 @@ def login():
     data = {"email": USERNAME, "password": utils.md5(PASSWORD)}
 
     # 发送登录 POST 请求
-    response = session.post(loginUrl, headers=headers, data=data)
+    response = session.post(loginUrl, headers=headers, data=data, proxies=PROXIES)
 
     log.info("尝试登录....")
 
@@ -71,7 +75,7 @@ def sign(session):
         "Accept": "text/plain, */*; q=0.01",
     }
 
-    response = session.post(signUrl, headers=headers, data={})
+    response = session.post(signUrl, headers=headers, data={}, proxies=PROXIES)
 
     try:
         result = response.json()
@@ -91,7 +95,7 @@ def getCredits(session):
         "Referer": f"{BASE_URL}/sg_sign.htm",
     }
 
-    response = session.get(myUrl, headers=headers)
+    response = session.get(myUrl, headers=headers, proxies=PROXIES)
     if response.status_code != 200:
         log.error(f"请求失败，状态码：{response.status_code}")
         return None
