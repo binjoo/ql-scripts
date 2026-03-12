@@ -16,6 +16,7 @@ import log
 
 USERNAME = os.getenv("HIFITI_USERNAME")
 PASSWORD = os.getenv("HIFITI_PASSWORD")
+
 BASE_URL = "https://www.hifiti.com"
 USER_AGENT = (
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:142.0) Gecko/20100101 Firefox/142.0"
@@ -99,7 +100,7 @@ def getCredits():
         return None
 
     soup = BeautifulSoup(response.text, "html.parser")
-    span = soup.find("span", class_="text-muted", text="金币：")
+    span = soup.find("span", class_="text-muted", string="金币：")
     if span:
         em = span.find_next_sibling("em")
         if em:
