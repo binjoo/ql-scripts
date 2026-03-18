@@ -125,3 +125,16 @@ def captcha(type_code: int, image_base64: str) -> str:
         log.error(f"[CAPTCHA] 🥀 发生未知错误: {e}")
     
     return None # 发生异常时返回 None
+
+def save(file, content):
+    with open(file, "w", encoding="utf-8") as f:
+        f.write(content)
+
+
+def load(file):
+    if os.path.exists(file):
+        with open(file, "r", encoding="utf-8") as f:
+            content = f.read().strip()
+            if content:
+                return content
+    return None
