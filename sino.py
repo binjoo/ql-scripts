@@ -21,7 +21,6 @@ USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTM
 
 HEADERS = {"User-Agent": USER_AGENT, "Content-Type": "application/json;charset=UTF-8"}
 
-
 def generateAuthString() -> str:
     credentialsStr = "miniapp-snjk:ac67459c7d3b6eb7522309uma766r00a"
     credentialsBytes = credentialsStr.encode("utf-8")
@@ -155,6 +154,61 @@ def answer(id: str, aiAnswer: str):
         log.error(f"异常信息: {e}")
 
 
+def topic_list():
+    url = f"{BASE_URL}/sino-social/article_information/getArticleTopicListByTopicId"
+    topic_ids = [
+        "1371669489529331713",
+        "1186536896110239746",
+        "1371671878402187266",
+        "1186536755219374081",
+        "1186535072896622594",
+        "1255337546847363073",
+        "1186535404691234818",
+    ]
+    descs = ["releaseTime", "sbrowseNum"]
+
+    try:
+        payload = {
+            "topicTypeId": random.choice(topic_ids),
+            "messageType": 1,
+            "current": 1,
+            "size": 10,
+            "title": "",
+            "descs": random.choice(descs),
+        }
+
+        response = requests.post(url, json=payload, headers=HEADERS)
+        response.raise_for_status()
+        result = response.json()
+        records = result.get("data").get("records");
+
+        return records[0]['id'], records[1]['id']
+    except Exception as e:
+        utils.push("三诺健康签到", "详情步骤出现异常")
+        log.error(f"异常类型: {type(e).__name__}")
+        log.error(f"异常信息: {e}")
+        return None, None
+
+
+def share(id):
+    url = f"{BASE_URL}/sino-social/sharerecord/addForArticle"
+
+    try:
+        payload = {
+            "messageContentId": id,
+            "shareType": 1
+        }
+
+        response = requests.post(url, json=payload, headers=HEADERS)
+        response.raise_for_status()
+        result = response.json()
+        
+        log.success(f"分享文章：{result.get('msg')}")
+    except Exception as e:
+        utils.push("三诺健康签到", "详情步骤出现异常")
+        log.error(f"异常类型: {type(e).__name__}")
+        log.error(f"异常信息: {e}")
+
 def detail():
     questionUrl = f"{BASE_URL}/sino-member/integral/detail"
 
@@ -182,4 +236,8 @@ if __name__ == "__main__":
     aiAnswer = ai(output)
     if aiAnswer is not None:
         answer(id, aiAnswer)
+    tid1, tid2 = topic_list()
+    share(tid1)
+    share(tid2)
     detail()
+
