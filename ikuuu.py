@@ -13,7 +13,7 @@ import log
 
 USERNAME = os.getenv("IKUUU_USERNAME")
 PASSWORD = os.getenv("IKUUU_PASSWORD")
-BASE_URL = "https://ikuuu.org"
+BASE_URL = "https://ikuuu.nl"
 USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36 Edg/138.0.0.0"
 
 HEADERS = {"User-Agent": USER_AGENT}
