@@ -50,7 +50,10 @@ def lottery():
         if result.get("code") == 0:
             data = result.get("data")
             log.success(f"抽奖成功，{data.get('title')}")
-            return data.get('id')
+            if data.get('prize_method') == -1 :
+                return None
+            else :
+              return data.get('id')
         else:
             log.error(f"抽奖失败：{result.get('msg')}")
             return None
